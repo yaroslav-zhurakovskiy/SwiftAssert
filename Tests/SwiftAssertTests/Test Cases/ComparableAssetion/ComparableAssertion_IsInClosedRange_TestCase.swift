@@ -13,7 +13,7 @@ class ComparableAssertion_IsInClosedRange_TestCase: AssertionTestCase {
     func test_WhenIsOutsideOfBounds_ShouldReportFailure() {
         let four = ComparableValue(4)
         let zero = ComparableValue(0)
-        let location = createFailureLocationInThisFileAtTheNextLine()
+        let location = createSourceLocationInThisFileAtTheNextLine()
         assertThat(five).isInRange(zero...four)
         reporterMock.assertOneReportedFailure(
             withText: "Expected \(five) to be in range: \(zero)...\(four)",

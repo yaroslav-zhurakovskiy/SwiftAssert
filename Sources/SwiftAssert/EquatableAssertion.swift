@@ -4,7 +4,7 @@ public extension Assertion where Subject: Equatable {
         if subject != other {
             let failure = Failure(
                 text: "Expected \(subject) to equal to \(other)",
-                location: Failure.Location(fileName: file, line: line)
+                location: SourceLocation(filePath: file, line: line)
             )
             FailureReporterHolder.sharedReporter.reportFailure(failure)
         }
@@ -16,7 +16,7 @@ public extension Assertion where Subject: Equatable {
         if subject == other {
             let failure = Failure(
                 text: "Expected \(subject) not to equal \(other)",
-                location: Failure.Location(fileName: file, line: line)
+                location: SourceLocation(filePath: file, line: line)
             )
             FailureReporterHolder.sharedReporter.reportFailure(failure)
         }

@@ -7,7 +7,7 @@ public extension OptionalAssertion {
         if let unwrapped = subject {
             let failure = Failure(
                 text: "Expected nil but was: \(unwrapped)",
-                location: Failure.Location(fileName: file, line: line)
+                location: SourceLocation(filePath: file, line: line)
             )
             FailureReporterHolder.sharedReporter.reportFailure(failure)
         }
@@ -17,7 +17,7 @@ public extension OptionalAssertion {
         if subject == nil {
             let failure = Failure(
                 text: "Expected value not to be nil",
-                location: Failure.Location(fileName: file, line: line)
+                location: SourceLocation(filePath: file, line: line)
             )
             FailureReporterHolder.sharedReporter.reportFailure(failure)
         }
@@ -33,7 +33,7 @@ public extension OptionalAssertion {
         if let wrapped = subject {
             spec(AnyAssertion(subject: wrapped))
         } else {
-            return isNotNil()
+            return isNotNil(file: file, line: line)
         }
     }
 }

@@ -14,7 +14,7 @@ class EquatableAssetion_IsEqualTo_TestCase: AssertionTestCase {
         let zero = EquatableValue(0)
         let one = EquatableValue(1)
         
-        let location = createFailureLocationInThisFileAtTheNextLine()
+        let location = createSourceLocationInThisFileAtTheNextLine()
         assertThat(zero).isEqualTo(one)
         
         reporterMock.assertOneReportedFailure(
@@ -48,7 +48,7 @@ class EquatableAssetion_IsNotEqualTo_TestCase: AssertionTestCase {
     func test_WhenValuesAreEqual_ShouldReportFailure() {
         let zero = EquatableValue(0)
         
-        let location = createFailureLocationInThisFileAtTheNextLine()
+        let location = createSourceLocationInThisFileAtTheNextLine()
         assertThat(zero).isNotEqualTo(zero)
         
         reporterMock.assertOneReportedFailure(

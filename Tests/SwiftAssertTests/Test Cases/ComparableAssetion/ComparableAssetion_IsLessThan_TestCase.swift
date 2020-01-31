@@ -14,7 +14,7 @@ class ComparableAssetion_IsLessThan_TestCase: AssertionTestCase {
     func test_ShouldReportFailure_WhenSubjectIsEqual() {
         let zero = ComparableValue(0)
         
-        let location = createFailureLocationInThisFileAtTheNextLine()
+        let location = createSourceLocationInThisFileAtTheNextLine()
         assertThat(zero).isLessThan(zero)
         
         reporterMock.assertOneReportedFailure(
@@ -27,7 +27,7 @@ class ComparableAssetion_IsLessThan_TestCase: AssertionTestCase {
         let zero = ComparableValue(0)
         let one = ComparableValue(1)
         
-        let location = createFailureLocationInThisFileAtTheNextLine()
+        let location = createSourceLocationInThisFileAtTheNextLine()
         assertThat(one).isLessThan(zero)
         
         reporterMock.assertOneReportedFailure(

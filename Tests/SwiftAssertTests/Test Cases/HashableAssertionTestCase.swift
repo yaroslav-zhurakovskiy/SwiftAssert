@@ -14,7 +14,7 @@ class HashableAssertion_TestCase: AssertionTestCase {
         let zero = HashableValue(0)
         let expectedHashValue = 1.hashValue
         
-        let location = createFailureLocationInThisFileAtTheNextLine()
+        let location = createSourceLocationInThisFileAtTheNextLine()
         assertThat(zero).hasHashValue(expectedHashValue)
        
         reporterMock.assertOneReportedFailure(

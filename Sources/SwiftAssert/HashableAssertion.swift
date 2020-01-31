@@ -1,6 +1,10 @@
 public extension Assertion where Subject: Hashable {
     @discardableResult
-    func hasHashValue(_ hashValue: Int, sourceLocation: Failure.Location = .init()) -> Self {
+    func hasHashValue(
+        _ hashValue: Int,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) -> Self {
         if subject.hashValue != hashValue {
             let failure = Failure(
                 text: """
@@ -9,7 +13,7 @@ public extension Assertion where Subject: Hashable {
                 but was:
                     \(subject.hashValue)
                 """,
-                location: sourceLocation
+                location: SourceLocation(filePath: file, line: line)
             )
             FailureReporterHolder.sharedReporter.reportFailure(failure)
         }

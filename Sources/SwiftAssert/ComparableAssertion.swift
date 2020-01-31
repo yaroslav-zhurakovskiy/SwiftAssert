@@ -4,7 +4,7 @@ public extension Assertion where Subject: Comparable {
         if !(subject < other) {
             let failure = Failure(
                 text: "Expected \(subject) to be less than \(other)",
-                location: Failure.Location(fileName: file, line: line)
+                location: SourceLocation(filePath: file, line: line)
             )
             FailureReporterHolder.sharedReporter.reportFailure(failure)
         }
@@ -17,7 +17,7 @@ public extension Assertion where Subject: Comparable {
         if !(subject <= other) {
             let failure = Failure(
                 text: "Expected \(subject) to be less than or equal to \(other)",
-                location: Failure.Location(fileName: file, line: line)
+                location: SourceLocation(filePath: file, line: line)
             )
             FailureReporterHolder.sharedReporter.reportFailure(failure)
         }
@@ -29,7 +29,7 @@ public extension Assertion where Subject: Comparable {
         if !(subject > other) {
             let failure = Failure(
                 text: "Expected \(subject) to be greater than \(other)",
-                location: Failure.Location(fileName: file, line: line)
+                location: SourceLocation(filePath: file, line: line)
             )
             FailureReporterHolder.sharedReporter.reportFailure(failure)
         }
@@ -41,7 +41,7 @@ public extension Assertion where Subject: Comparable {
         if !(subject >= other) {
             let failure = Failure(
                 text: "Expected \(subject) to be greater than or equal to \(other)",
-                location: Failure.Location(fileName: file, line: line)
+                location: SourceLocation(filePath: file, line: line)
             )
             FailureReporterHolder.sharedReporter.reportFailure(failure)
         }
@@ -49,11 +49,15 @@ public extension Assertion where Subject: Comparable {
     }
     
     @discardableResult
-    func isInRange(_ range: Range<Subject>, sourceLocation: Failure.Location = Failure.Location()) -> Self {
+    func isInRange(
+        _ range: Range<Subject>,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) -> Self {
         if !range.contains(subject) {
             let failure = Failure(
                 text: "Expected \(subject) to be in range: \(range)",
-                location: sourceLocation
+                location: SourceLocation(filePath: file, line: line)
             )
             FailureReporterHolder.sharedReporter.reportFailure(failure)
         }
@@ -61,11 +65,15 @@ public extension Assertion where Subject: Comparable {
     }
     
     @discardableResult
-    func isInRange(_ range: ClosedRange<Subject>, sourceLocation: Failure.Location = Failure.Location()) -> Self {
+    func isInRange(
+        _ range: ClosedRange<Subject>,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) -> Self {
         if !range.contains(subject) {
             let failure = Failure(
                 text: "Expected \(subject) to be in range: \(range)",
-                location: sourceLocation
+                location: SourceLocation(filePath: file, line: line)
             )
             FailureReporterHolder.sharedReporter.reportFailure(failure)
         }

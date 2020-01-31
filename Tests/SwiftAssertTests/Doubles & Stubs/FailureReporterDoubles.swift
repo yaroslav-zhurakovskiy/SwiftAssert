@@ -12,7 +12,7 @@ class FailureReporterSpy: FailureReporter {
 class FailureReporterMock: FailureReporterSpy {
     func assertOneReportedFailure(
         withText text: String,
-        at location: Failure.Location,
+        at location: SourceLocation,
         file: StaticString = #file,
         line: UInt = #line
     ) {
@@ -38,11 +38,11 @@ class FailureReporterMock: FailureReporterSpy {
 }
 
 func assertFailureLocation(
-    _ location: Failure.Location,
-    isEqualTo other: Failure.Location,
+    _ location: SourceLocation,
+    isEqualTo other: SourceLocation,
     file: StaticString = #file,
     line: UInt = #line
 ) {
-    XCTAssertEqual("\(location.fileName)", "\(location.fileName)", "File name",file: file, line: line)
-    XCTAssertEqual(location.line, location.line, "Line",file: file, line: line)
+    XCTAssertEqual("\(location.filePath)", "\(other.filePath)", "File path",file: file, line: line)
+    XCTAssertEqual(location.line, other.line, "Line",file: file, line: line)
 }

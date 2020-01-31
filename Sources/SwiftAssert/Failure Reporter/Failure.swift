@@ -1,18 +1,18 @@
-public struct Failure {
-    public struct Location {
-        public let fileName: StaticString
-        public let line: UInt
-        
-        public init(fileName: StaticString = #file, line: UInt = #line) {
-            self.fileName = fileName
-            self.line = line
-        }
+ public struct SourceLocation {
+    public let filePath: StaticString
+    public let line: UInt
+    
+    public init(filePath: StaticString, line: UInt) {
+        self.filePath = filePath
+        self.line = line
     }
-    
+ }
+
+public struct Failure {
     public let text: String
-    public let location: Location
+    public let location: SourceLocation
     
-    public init(text: String, location: Location) {
+    public init(text: String, location: SourceLocation) {
         self.text = text
         self.location = location
     }

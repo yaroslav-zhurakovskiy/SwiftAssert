@@ -13,7 +13,7 @@ class OptionalAssertion_CheckingIfValueIsNil_TestCase: AssertionTestCase {
     func test_ShouldReportFailure_WhenValueIsNotNil() {
         let numberOrNil: Int? = 1
         
-        let location = createFailureLocationInThisFileAtTheNextLine()
+        let location = createSourceLocationInThisFileAtTheNextLine()
         assertThat(numberOrNil).isNil()
         
         reporterMock.assertOneReportedFailure(
@@ -36,7 +36,7 @@ class OptionalAssertion_CheckingIfValueIsNotNil_TestCase: AssertionTestCase {
     func test_ShouldReportFaliure_WhenValueIsNil() {
         let numberOrNil: Int? = nil
         
-        let location = createFailureLocationInThisFileAtTheNextLine()
+        let location = createSourceLocationInThisFileAtTheNextLine()
         assertThat(numberOrNil).isNotNil()
         
         reporterMock.assertOneReportedFailure(
@@ -50,7 +50,7 @@ class OptionalAssertion_CheckingIfValueIsNotNilAndPerformingOtherAssertion_TestC
     func test_ShouldReportFaliure_WhenValueIsNil() {
         let numberOrNil: Int? = nil
         
-        let location = createFailureLocationInThisFileAtTheNextLine()
+        let location = createSourceLocationInThisFileAtTheNextLine()
         assertThat(numberOrNil).isNotNilAnd { $0.isEqualTo(0) }
         
         reporterMock.assertOneReportedFailure(
@@ -63,7 +63,7 @@ class OptionalAssertion_CheckingIfValueIsNotNilAndPerformingOtherAssertion_TestC
         let numberOrNil: Int? = 0
         let comparasionValue = 1
         
-        let location = createFailureLocationInThisFileAtTheNextLine()
+        let location = createSourceLocationInThisFile(at: #line + 2)
         assertThat(numberOrNil).isNotNilAnd { (number: AnyAssertion<Int>) in
             number.isEqualTo(comparasionValue)
         }

@@ -10,7 +10,7 @@ public class XCTestFailureReporter: FailureReporter {
     public func reportFailure(_ failure: Failure) {
         testCase?.recordFailure(
             withDescription: failure.text,
-            inFile: "\(failure.location.fileName)",
+            inFile: "\(failure.location.filePath)",
             atLine: Int(failure.location.line),
             expected: true
         )

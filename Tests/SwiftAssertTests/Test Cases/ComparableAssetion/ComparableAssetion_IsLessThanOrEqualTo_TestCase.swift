@@ -23,7 +23,7 @@ class ComparableAssetion_IsLessThanOrEqualTo_TestCase: AssertionTestCase {
         let zero = ComparableValue(0)
         let one = ComparableValue(1)
         
-        let location = createFailureLocationInThisFileAtTheNextLine()
+        let location = createSourceLocationInThisFileAtTheNextLine()
         assertThat(one).isLessThanOrEqualTo(zero)
         
         reporterMock.assertOneReportedFailure(

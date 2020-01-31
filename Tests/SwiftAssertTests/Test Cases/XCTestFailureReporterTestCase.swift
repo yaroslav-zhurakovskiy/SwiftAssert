@@ -19,12 +19,12 @@ class XCTestFailureReporterTestCase: XCTestCase {
         let reporter: FailureReporter = XCTestFailureReporter(testCase: self)
         let file: StaticString = #file
         let line: UInt = #line
-        let failure = Failure(text: "Some text", location: Failure.Location(fileName: file, line: line))
+        let failure = Failure(text: "Some text", location: SourceLocation(filePath: file, line: line))
         reporter.reportFailure(failure)
         
         XCTAssertEqual(recordedFailures.count, 1, "Number of reported failures")
         XCTAssertEqual(recordedFailures[0].description, failure.text, "Failure text")
-        XCTAssertEqual(recordedFailures[0].file, "\(failure.location.fileName)", "Failure file path")
+        XCTAssertEqual(recordedFailures[0].file, "\(failure.location.filePath)", "Failure file path")
         XCTAssertEqual(recordedFailures[0].line, Int(failure.location.line), "Failure line number")
     }
     

@@ -27,6 +27,14 @@ class FailureReporterMock: FailureReporterSpy {
     ) {
         XCTAssertEqual(reportedFailures.count, 0, "Number of reported failures", file: file, line: line)
     }
+    
+    func assertHasNumberOfReportedFailures(
+        _ value: Int,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        XCTAssertEqual(reportedFailures.count, value, "Number of reported failures", file: file, line: line)
+    }
 }
 
 func assertFailureLocation(

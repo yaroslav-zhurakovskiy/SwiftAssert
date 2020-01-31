@@ -15,3 +15,9 @@ extension ComparableValue {
         return lhs.value < rhs.value
     }
 }
+
+extension ComparableValue where Value: CustomStringConvertible {
+    var description: String {
+        return value.description
+    }
+}

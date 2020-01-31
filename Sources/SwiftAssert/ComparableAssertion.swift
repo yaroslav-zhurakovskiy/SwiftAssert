@@ -47,4 +47,28 @@ public extension Assertion where Subject: Comparable {
         }
         return self
     }
+    
+    @discardableResult
+    func isInRange(_ range: Range<Subject>, sourceLocation: Failure.Location = Failure.Location()) -> Self {
+        if !range.contains(subject) {
+            let failure = Failure(
+                text: "Expected \(subject) to be in range: \(range)",
+                location: sourceLocation
+            )
+            FailureReporterHolder.sharedReporter.reportFailure(failure)
+        }
+        return self
+    }
+    
+    @discardableResult
+    func isInRange(_ range: ClosedRange<Subject>, sourceLocation: Failure.Location = Failure.Location()) -> Self {
+        if !range.contains(subject) {
+            let failure = Failure(
+                text: "Expected \(subject) to be in range: \(range)",
+                location: sourceLocation
+            )
+            FailureReporterHolder.sharedReporter.reportFailure(failure)
+        }
+        return self
+    }
 }

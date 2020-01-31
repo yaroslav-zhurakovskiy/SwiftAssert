@@ -1,8 +1,8 @@
 import SwiftAssert
 import XCTest
 
-class EquatableAssetionTestCase: AssertionTestCase {
-    func testShouldNotRecordAnyFailureWhenValuesAreEqual() {
+class EquatableAssetion_IsEqualTo_TestCase: AssertionTestCase {
+    func test_WhenValuesAreEqual_ShouldNotRecordAnyFailure() {
         let zero = EquatableValue(0)
         
         assertThat(zero).isEqualTo(zero)
@@ -10,7 +10,7 @@ class EquatableAssetionTestCase: AssertionTestCase {
         reporterMock.assertNoReportedFailures()
     }
     
-    func testShouldRecordFailureWhenValuesAreNotEqual() {
+    func test_WhenValuesAreNotEqual_ShouldRecordFailure() {
         let zero = EquatableValue(0)
         let one = EquatableValue(1)
         
@@ -23,3 +23,27 @@ class EquatableAssetionTestCase: AssertionTestCase {
         )
     }
 }
+
+class EquatableAssetion_IsNotEqualTo_TestCase: AssertionTestCase {
+    func test_WhenValuesAreNotEqual_ShouldNotReportAnyFailure() {
+        let zero = EquatableValue(0)
+        let one = EquatableValue(1)
+        
+        assertThat(zero).isNotEqualTo(one)
+        
+        reporterMock.assertNoReportedFailures()
+    }
+    
+    func test_WhenValuesAreEqual_ShouldReportFailure() {
+        let zero = EquatableValue(0)
+        
+        let location = createFailureLocationInThisFileAtTheNextLine()
+        assertThat(zero).isNotEqualTo(zero)
+        
+        reporterMock.assertOneReportedFailure(
+            withText: "Expected \(zero) not to equal \(zero)",
+            at: location
+        )
+    }
+}
+

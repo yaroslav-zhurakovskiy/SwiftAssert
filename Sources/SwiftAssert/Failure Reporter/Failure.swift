@@ -3,7 +3,7 @@ public struct Failure {
         public let fileName: StaticString
         public let line: UInt
         
-        public init(fileName: StaticString, line: UInt) {
+        public init(fileName: StaticString = #file, line: UInt = #line) {
             self.fileName = fileName
             self.line = line
         }

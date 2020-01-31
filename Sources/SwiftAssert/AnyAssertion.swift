@@ -3,7 +3,6 @@ public class AnyAssertion<Subject>: Assertion {
     
     public let subject: Subject
     
-    
     public required init(subject: Subject) {
         self.subject = subject
     }

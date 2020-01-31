@@ -2,7 +2,7 @@ import SwiftAssert
 import XCTest
 
 class ComparableAssetion_IsGreaterThanOrEqualTo_TestCase: AssertionTestCase {
-    func test_ShouldNotReportFailure_WhenSubjectIsGreater() {
+    func test_WhenSubjectIsGreater_ShouldNotReportFailure() {
         let zero = ComparableValue(0)
         let one = ComparableValue(1)
 
@@ -11,7 +11,7 @@ class ComparableAssetion_IsGreaterThanOrEqualTo_TestCase: AssertionTestCase {
         reporterMock.assertNoReportedFailures()
     }
 
-    func test_ShouldNotReportFailure_WhenSubjectIsEqualTo() {
+    func test_WhenSubjectAndValueAreEqual_ShouldNotReportFailure() {
         let zero = ComparableValue(0)
 
         assertThat(zero).isGreaterThanOrEqualTo(zero)
@@ -19,10 +19,10 @@ class ComparableAssetion_IsGreaterThanOrEqualTo_TestCase: AssertionTestCase {
         reporterMock.assertNoReportedFailures()
     }
 
-    func test_ShouldReportFailure_WhenSubjectIsLess() {
+    func test_WhenSubjectIsLess_ShouldReportFailure() {
         let zero = ComparableValue(0)
         let one = ComparableValue(1)
-
+        
         let location = createFailureLocationInThisFileAtTheNextLine()
         assertThat(zero).isGreaterThanOrEqualTo(one)
 

@@ -1,8 +1,17 @@
-//
-//  File.swift
-//  
-//
-//  Created by Yaroslav Zhurakovskiy on 31.01.2020.
-//
+struct HashableValue<Value: Hashable>: Hashable {
+    private let value: Value
+    
+    init(_ value: Value) {
+        self.value = value
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(value)
+    }
+}
 
-import Foundation
+extension HashableValue: CustomStringConvertible where Value: CustomStringConvertible {
+    var description: String {
+        return value.description
+    }
+}

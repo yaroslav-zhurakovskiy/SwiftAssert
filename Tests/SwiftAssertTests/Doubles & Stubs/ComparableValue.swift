@@ -16,7 +16,7 @@ extension ComparableValue {
     }
 }
 
-extension ComparableValue where Value: CustomStringConvertible {
+extension ComparableValue: CustomStringConvertible where Value: CustomStringConvertible {
     var description: String {
         return value.description
     }

@@ -1,3 +1,3 @@
-func add(_ x: Int, y: Int) -> Int {
+public func add(x: Int, y: Int) -> Int {
     return x + y
 }

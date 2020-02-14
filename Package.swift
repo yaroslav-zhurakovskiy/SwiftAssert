@@ -6,6 +6,7 @@ import PackageDescription
 let package = Package(
     name: "SwiftAssert",
     products: [
+        .library(name: "Example", targets: ["Example"]),
         .library(
             name: "SwiftAssert",
             targets: ["SwiftAssert"]
@@ -20,6 +21,16 @@ let package = Package(
         .testTarget(
             name: "SwiftAssertTests",
             dependencies: ["SwiftAssert"]
-        )
+        ),
+        
+        .target(
+            name: "Example",
+            dependencies: []
+        ),
+        
+        .testTarget(
+            name: "ExampleTests",
+            dependencies: ["Example", "SwiftAssert"]
+        ),
     ]
 )

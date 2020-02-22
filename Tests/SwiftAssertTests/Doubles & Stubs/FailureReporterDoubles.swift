@@ -21,6 +21,17 @@ class FailureReporterMock: FailureReporterSpy {
         assertFailureLocation(reportedFailures[0].location, isEqualTo: location, file: file, line: line)
     }
     
+    func assertReportedFailure(
+        withText text: String,
+        at location: SourceLocation,
+        index: Int,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        XCTAssertEqual(reportedFailures[index].text, text, "Text", file: file, line: line)
+        assertFailureLocation(reportedFailures[index].location, isEqualTo: location, file: file, line: line)
+    }
+    
     func assertNoReportedFailures(
         file: StaticString = #file,
         line: UInt = #line

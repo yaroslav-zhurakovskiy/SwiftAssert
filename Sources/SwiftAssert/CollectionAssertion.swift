@@ -17,6 +17,12 @@ public extension Assertion where Subject: Collection {
         }
         return self
     }
+    
+    @discardableResult
+    func hasCount(_ count: Int, file: StaticString = #file, line: UInt = #line) -> Self  {
+        assertThat(subject.count).isEqualTo(count, file: file, line: line)
+        return self
+    }
 }
 
 public extension Assertion where Subject: Collection, Subject.Element: Equatable {

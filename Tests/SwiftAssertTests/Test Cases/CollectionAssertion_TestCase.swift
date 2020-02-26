@@ -5,6 +5,24 @@
 import SwiftAssert
 import XCTest
 
+class CollectionAssertion_Count_TestCase: AssertionTestCase {
+    func test_WhenValuesDontMatch_ShouldReportFailure() {
+        let collection = AnyCollection([0])
+        
+        let location = createSourceLocationInThisFileAtTheNextLine()
+        assertThat(collection).hasCount(0)
+        
+        reporterMock.assertOneReportedFailure(withText: "Expected 1 to equal to 0", at: location)
+    }
+    
+    func tests_WhenValuesMatch_ShouldNotReportAnyFailuire() {
+        let collection = AnyCollection([0])
+                
+        assertThat(collection).hasCount(1)
+        reporterMock.assertNoReportedFailures()
+    }
+}
+
 class CollectionAssertion_IsEmpty_TestCase: AssertionTestCase {
     func test_WhenIsNotEmpty_ShouldReportFailure() {
         let collection = AnyCollection([0])

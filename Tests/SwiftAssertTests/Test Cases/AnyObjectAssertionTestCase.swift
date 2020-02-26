@@ -6,7 +6,7 @@ import SwiftAssert
 import XCTest
 
 class AnyObjectAssertion_SameReference_TestCase: AssertionTestCase {
-    func test_WhenAddressesMatch_ShouldNotReportAnyFailuire() {
+    func test_WhenAddressesMatch_ShouldNotReportAnyFailure() {
         let dummy = DummyObject()
         
         assertThat(dummy).isSameAs(dummy)
@@ -14,7 +14,7 @@ class AnyObjectAssertion_SameReference_TestCase: AssertionTestCase {
         reporterMock.assertNoReportedFailures()
     }
     
-    func tests_WhenAddressesDoNotMatch_ShouldReportFailuire() {
+    func tests_WhenAddressesDoNotMatch_ShouldReportFailure() {
         let dummy1 = DummyObject()
         let dummy2 = DummyObject()
         

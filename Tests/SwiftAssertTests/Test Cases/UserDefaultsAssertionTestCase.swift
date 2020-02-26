@@ -22,7 +22,7 @@ class UserDefaultsAssertion_HasNothing_TestCase: AssertionTestCase {
         reporterMock.assertNoReportedFailures()
     }
     
-    func test_WhenContainsObjectForKey_ShouldReportFailuire() {
+    func test_WhenContainsObjectForKey_ShouldReportFailure() {
         userDefaults.set("DUMMY", forKey: key)
         
         let location = createSourceLocationInThisFileAtTheNextLine()
@@ -53,7 +53,7 @@ class UserDefaultsAssertion_HasString_TestCase: AssertionTestCase {
         reporterMock.assertNoReportedFailures()
     }
     
-    func test_WhenStringIsMissingForKey_ShouldReportFailuire() {
+    func test_WhenStringIsMissingForKey_ShouldReportFailure() {
         let location = createSourceLocationInThisFileAtTheNextLine()
         assertThat(userDefaults).hasString(forKey: key, that: { $0.isEqualTo("DUMMY") })
         
@@ -63,7 +63,7 @@ class UserDefaultsAssertion_HasString_TestCase: AssertionTestCase {
         )
     }
     
-    func test_WhenHasStringForKey_ShouldMakeAssertionOnThatString() {
+    func test_WhenHasStringForKey_ShouldMakeAssertionOnThatValue() {
         userDefaults.set("DUMMY", forKey: key)
         
         let location = createSourceLocationInThisFileAtTheNextLine()
@@ -75,7 +75,7 @@ class UserDefaultsAssertion_HasString_TestCase: AssertionTestCase {
         )
     }
     
-    func test_WhenHasNonStringObjectForKey_ShouldReportFailuire() {
+    func test_WhenHasNonStringObjectForKey_ShouldReportFailure() {
         let storedDate = Date()
         userDefaults.set(storedDate, forKey: key)
         
@@ -107,7 +107,7 @@ class UserDefaultsAssertion_HasInt_TestCase: AssertionTestCase {
         reporterMock.assertNoReportedFailures()
     }
     
-    func test_WhenNumberIsMissingForKey_ShouldReportFailuire() {
+    func test_WhenNumberIsMissingForKey_ShouldReportFailure() {
         let location = createSourceLocationInThisFileAtTheNextLine()
         assertThat(userDefaults).hasInt(forKey: key, that: { _ in })
 
@@ -117,7 +117,7 @@ class UserDefaultsAssertion_HasInt_TestCase: AssertionTestCase {
         )
     }
 
-    func test_WhenHasNumberForKey_ShouldMakeAssertionOnThatString() {
+    func test_WhenHasNumberForKey_ShouldMakeAssertionOnThatValue() {
         userDefaults.set(0, forKey: key)
 
         let location = createSourceLocationInThisFileAtTheNextLine()
@@ -129,7 +129,7 @@ class UserDefaultsAssertion_HasInt_TestCase: AssertionTestCase {
         )
     }
 
-    func test_WhenHasNonIntObjectForKey_ShouldReportFailuire() {
+    func test_WhenHasNonIntObjectForKey_ShouldReportFailure() {
         let storedDate = Date()
         userDefaults.set(storedDate, forKey: key)
 

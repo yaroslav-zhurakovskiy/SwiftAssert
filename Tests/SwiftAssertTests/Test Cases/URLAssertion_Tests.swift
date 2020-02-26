@@ -6,7 +6,7 @@ import XCTest
 import SwiftAssert
 
 class URLAssertion_Tests: AssertionTestCase {
-    func test_WhenSchemaMatches_ShouldNotReportAnyFailuire() {
+    func test_WhenSchemaMatches_ShouldNotReportAnyFailure() {
         let url = URL(fileURLWithPath: #file)
         
         assertThat(url).hasSchema("file")
@@ -32,7 +32,7 @@ class URLAssertion_Tests: AssertionTestCase {
         reporterMock.assertOneReportedFailure(withText: "Expected \(url) to have schema 'test'", at: location)
     }
     
-    func test_WhenHostMatches_ShouldNotReportAnyFailuire() {
+    func test_WhenHostMatches_ShouldNotReportAnyFailure() {
         let url = URL(string: "https://test.com")!
         
         assertThat(url).hasHost("test.com")
@@ -101,7 +101,7 @@ class URLAssertion_Tests: AssertionTestCase {
         reporterMock.assertNoReportedFailures()
     }
     
-    func test_WhenPasswordIsMissing_ShouldReportFailuire() {
+    func test_WhenPasswordIsMissing_ShouldReportFailure() {
         let url = URL(fileURLWithPath: #file)
         
         let location = createSourceLocationInThisFileAtTheNextLine()
@@ -110,7 +110,7 @@ class URLAssertion_Tests: AssertionTestCase {
         reporterMock.assertOneReportedFailure(withText: "Expected \(url) to have password 'password'", at: location)
     }
     
-    func test_WhenPasswordsDoNotMatch_ShouldReportFailuire() {
+    func test_WhenPasswordsDoNotMatch_ShouldReportFailure() {
         let url = URL(string: "test://user:wrongpassword@test.com")!
         
         let location = createSourceLocationInThisFileAtTheNextLine()
@@ -127,7 +127,7 @@ class URLAssertion_Tests: AssertionTestCase {
         reporterMock.assertNoReportedFailures()
     }
     //
-    func test_WhenPortIsMissing_ShouldReportFailuire() {
+    func test_WhenPortIsMissing_ShouldReportFailure() {
         let url = URL(fileURLWithPath: #file)
         
         let location = createSourceLocationInThisFileAtTheNextLine()
@@ -136,7 +136,7 @@ class URLAssertion_Tests: AssertionTestCase {
         reporterMock.assertOneReportedFailure(withText: "Expected \(url) to have port '1'", at: location)
     }
     
-    func test_WhenPortsDoNotMatch_ShouldReportFailuire() {
+    func test_WhenPortsDoNotMatch_ShouldReportFailure() {
         let url = URL(string: "test://test.com")!
         
         let location = createSourceLocationInThisFileAtTheNextLine()

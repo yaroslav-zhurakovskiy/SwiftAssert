@@ -8,7 +8,7 @@ import XCTest
 class CodeBlockAssertion_DoesNotThrowError_TestCase: AssertionTestCase {
     func test_WhenBlockThrowsError_ShouldReportFailure() {
         let dummyError = DummyError()
-        
+                
         let location = createSourceLocationInThisFileAtTheNextLine()
         assertThatCode { throw  dummyError }.doesNotThrowAnyError()
         
@@ -119,5 +119,50 @@ class CodeBlockAssertion_Autoclosure_TestCase: AssertionTestCase {
     
     private func throwingMethod() throws {
         throw DummyError()
+    }
+}
+
+class CodeBlockAssertion_DoesNotPostAnyNotification_TestCase: AssertionTestCase {
+    func test_WhenPostsNotification_ShouldReportFailure() {
+        let notification = Notification(name: Notification.Name("TEST-NOTIFICATION"), object: nil, userInfo: nil)
+        
+        let location = createSourceLocationInThisFileAtTheNextLine()
+        assertThatCode { NotificationCenter.default.post(notification)  }.doesNotPostAnyNotification()
+            
+        reporterMock.assertOneReportedFailure(
+            withText: "Expected no notifications, but got [\"TEST-NOTIFICATION\"]",
+            at: location
+        )
+    }
+    
+    func test_WhenDoesNotPostAnyNotification_ShouldNotReportAnyFailure() {
+        assertThatCode { }.doesNotPostAnyNotification()
+        
+        reporterMock.assertNoReportedFailures()
+    }
+}
+
+class CodeBlockAssertion_PostsNotificationNamed_TestCase: AssertionTestCase {
+    func test_WhenDoesNotPostNotification_ShouldReportFailure() {
+        let location = createSourceLocationInThisFileAtTheNextLine()
+        assertThatCode {  }.postsNotification(named: Notification.Name("TEST-NOTIFICATION"))
+        
+        reporterMock.assertOneReportedFailure(
+            withText: "Expected notification named \"TEST-NOTIFICATION\", but got nothing",
+            at: location
+        )
+    }
+    
+    func test_WhenPostNotificationWithWrongName_ShouldReportFailure() {
+        let notificationName = Notification.Name("WRONG-NOTIFICATION")
+        
+        let location = createSourceLocationInThisFile(at: #line + 2)
+        assertThatCode { NotificationCenter.default.post(name: notificationName, object: nil)  }
+            .postsNotification(named: Notification.Name("TEST-NOTIFICATION"))
+        
+        reporterMock.assertOneReportedFailure(
+            withText: "Expected notification named \"TEST-NOTIFICATION\", but got [\"WRONG-NOTIFICATION\"]",
+            at: location
+        )
     }
 }

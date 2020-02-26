@@ -2,11 +2,33 @@
 //  Created by Yaroslav Zhurakovskiy on 26.02.2020.
 //
 
+import Foundation
+
 public class CodeBlockAssertion {
     let caughError: Error?
+    let caughtNotifications: [Notification]
     
-    fileprivate init(caughError:  Error?) {
+    fileprivate init(caughError: Error?, caughtNotifications: [Notification]) {
         self.caughError = caughError
+        self.caughtNotifications = caughtNotifications
+    }
+    
+    fileprivate convenience init(code: () throws -> Void) {
+        var caughError: Error?
+        var postedNotifications: [Notification] = []
+        let observer = NotificationCenter.default.addObserver(
+            forName: nil,
+            object: nil,
+            queue: nil,
+            using: { postedNotifications.append($0) }
+        )
+        do {
+            try code()
+        } catch let error {
+            caughError = error
+        }
+        NotificationCenter.default.removeObserver(observer)
+        self.init(caughError: caughError, caughtNotifications: postedNotifications)
     }
     
     @discardableResult
@@ -83,24 +105,50 @@ public class CodeBlockAssertion {
         }
         return self
     }
+    
+    @discardableResult
+    public func doesNotPostAnyNotification(file: StaticString = #file, line: UInt = #line) -> Self {
+        if caughtNotifications.count > 0 {
+            let failure = Failure(
+                text: "Expected no notifications, but got \(caughtNotifications.map { $0.name.rawValue })",
+                location: SourceLocation(filePath: file, line: line)
+            )
+            FailureReporterHolder.sharedReporter.reportFailure(failure)
+        }
+        return self
+    }
+    
+    @discardableResult
+    public func postsNotification(
+        named notificationName: Notification.Name,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) -> Self {
+        if caughtNotifications.count > 0 {
+            let names = caughtNotifications.map { $0.name.rawValue }
+            if !names.contains(notificationName.rawValue) {
+                let failure = Failure(
+                    text: "Expected notification named \"\(notificationName.rawValue)\", but got \(names)",
+                    location: SourceLocation(filePath: file, line: line)
+                )
+                FailureReporterHolder.sharedReporter.reportFailure(failure)
+            }
+        } else {
+            let failure = Failure(
+                text: "Expected notification named \"\(notificationName.rawValue)\", but got nothing",
+                location: SourceLocation(filePath: file, line: line)
+            )
+            FailureReporterHolder.sharedReporter.reportFailure(failure)
+        }
+        return self
+    }
 }
 
 
 public func assertThatCode(_ code: () throws -> Void) -> CodeBlockAssertion {
-    do {
-        try code()
-        return CodeBlockAssertion(caughError: nil)
-    } catch let error {
-        return CodeBlockAssertion(caughError: error)
-    }
+   return CodeBlockAssertion(code: code)
 }
 
-
 public func assertThatCode(_ code: @autoclosure () throws -> Void) -> CodeBlockAssertion {
-    do {
-        try code()
-        return CodeBlockAssertion(caughError: nil)
-    } catch let error {
-        return CodeBlockAssertion(caughError: error)
-    }
+    return CodeBlockAssertion(code: code)
 }

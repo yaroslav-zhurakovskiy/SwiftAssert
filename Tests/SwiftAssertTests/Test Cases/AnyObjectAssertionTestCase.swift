@@ -29,10 +29,3 @@ class AnyObjectAssertion_SameReference_TestCase: AssertionTestCase {
         )
     }
 }
-
-private extension String {
-    init<Object: AnyObject>(addressOf object: Object) {
-        let opaque: UnsafeMutableRawPointer = Unmanaged.passUnretained(object).toOpaque()
-        self.init(describing: opaque)
-    }
-}

@@ -6,3 +6,6 @@ class DummyObject {
     
 }
 
+class DummyError: Error {
+    
+}

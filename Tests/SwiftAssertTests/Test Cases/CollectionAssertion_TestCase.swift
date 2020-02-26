@@ -15,7 +15,7 @@ class CollectionAssertion_Count_TestCase: AssertionTestCase {
         reporterMock.assertOneReportedFailure(withText: "Expected 1 to equal to 0", at: location)
     }
     
-    func tests_WhenValuesMatch_ShouldNotReportAnyFailuire() {
+    func tests_WhenValuesMatch_ShouldNotReportAnyFailure() {
         let collection = AnyCollection([0])
         
         assertThat(collection).hasCount(1)

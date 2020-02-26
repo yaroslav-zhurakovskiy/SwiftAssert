@@ -17,7 +17,7 @@ class CollectionAssertion_Count_TestCase: AssertionTestCase {
     
     func tests_WhenValuesMatch_ShouldNotReportAnyFailuire() {
         let collection = AnyCollection([0])
-                
+        
         assertThat(collection).hasCount(1)
         reporterMock.assertNoReportedFailures()
     }
@@ -69,4 +69,3 @@ class CollectionAssertion_HasFirst_TestsCase: AssertionTestCase {
         reporterMock.assertNoReportedFailures()
     }
 }
-

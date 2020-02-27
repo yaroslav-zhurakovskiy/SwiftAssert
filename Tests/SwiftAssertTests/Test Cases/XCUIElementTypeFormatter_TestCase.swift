@@ -1,0 +1,111 @@
+//
+//  Created by Yaroslav Zhurakovskiy on 27.02.2020.
+//
+
+import SwiftAssert
+import XCTest
+
+@available(iOS 9.0, *)
+class XCUIElementTypeFormatter_TestCase: AssertionTestCase {
+    private let formatter = XCUIElementTypeFormatter()
+    
+    func test_Values() {
+        assertThatFormattedElement(.activityIndicator, isEqualTo: "Activity Indicator")
+        assertThatFormattedElement(.alert, isEqualTo: "Alert")
+        assertThatFormattedElement(.any, isEqualTo: "Any")
+        assertThatFormattedElement(.application, isEqualTo: "Application")
+        assertThatFormattedElement(.browser, isEqualTo: "Browser")
+        assertThatFormattedElement(.button, isEqualTo: "Button")
+        assertThatFormattedElement(.cell, isEqualTo: "Cell")
+        assertThatFormattedElement(.checkBox, isEqualTo: "Check Box")
+        assertThatFormattedElement(.collectionView, isEqualTo: "Collection View")
+        assertThatFormattedElement(.colorWell, isEqualTo: "Color Well")
+        assertThatFormattedElement(.comboBox, isEqualTo: "Combo Box")
+        assertThatFormattedElement(.datePicker, isEqualTo: "Date Picker")
+        assertThatFormattedElement(.decrementArrow, isEqualTo: "Decrement Arrow")
+        assertThatFormattedElement(.dialog, isEqualTo: "Dialog")
+        assertThatFormattedElement(.disclosureTriangle, isEqualTo: "Disclosure Triangle")
+        assertThatFormattedElement(.dockItem, isEqualTo: "Dock Item")
+        assertThatFormattedElement(.drawer, isEqualTo: "Drawer")
+        assertThatFormattedElement(.grid, isEqualTo: "Grid")
+        assertThatFormattedElement(.group, isEqualTo: "Group")
+        assertThatFormattedElement(.handle, isEqualTo: "Handle")
+        assertThatFormattedElement(.helpTag, isEqualTo: "Help Tag")
+        assertThatFormattedElement(.icon, isEqualTo: "Icon")
+        assertThatFormattedElement(.image, isEqualTo: "Image")
+        assertThatFormattedElement(.other, isEqualTo: "Other")
+        assertThatFormattedElement(.incrementArrow, isEqualTo: "Increment Arrow")
+        assertThatFormattedElement(.key, isEqualTo: "Key")
+        assertThatFormattedElement(.keyboard, isEqualTo: "Keyboard")
+        assertThatFormattedElement(.layoutArea, isEqualTo: "Layout Area")
+        assertThatFormattedElement(.layoutItem, isEqualTo: "Layout Item")
+        assertThatFormattedElement(.levelIndicator, isEqualTo: "Level Indicator")
+        assertThatFormattedElement(.link, isEqualTo: "Link")
+        assertThatFormattedElement(.map, isEqualTo: "Map")
+        assertThatFormattedElement(.matte, isEqualTo: "Matte")
+        assertThatFormattedElement(.menu, isEqualTo: "Menu")
+        assertThatFormattedElement(.menuBar, isEqualTo: "Menu Bar")
+        assertThatFormattedElement(.menuButton, isEqualTo: "Menu Button")
+        assertThatFormattedElement(.menuBarItem, isEqualTo: "Menu Bar Item")
+        assertThatFormattedElement(.menuItem, isEqualTo: "Menu Item")
+        assertThatFormattedElement(.statusBar, isEqualTo: "Status Bar")
+        assertThatFormattedElement(.touchBar, isEqualTo: "Touch Bar")
+        assertThatFormattedElement(.scrollView, isEqualTo: "Scroll View")
+        assertThatFormattedElement(.scrollBar, isEqualTo: "Scroll Bar")
+        assertThatFormattedElement(.segmentedControl, isEqualTo: "Segmented Control")
+        assertThatFormattedElement(.toolbar, isEqualTo: "Toolbar")
+        assertThatFormattedElement(.textView, isEqualTo: "Text View")
+        assertThatFormattedElement(.timeline, isEqualTo: "Timeline")
+        assertThatFormattedElement(.sheet, isEqualTo: "Sheet")
+        assertThatFormattedElement(.radioButton, isEqualTo: "Radio Button")
+        assertThatFormattedElement(.radioGroup, isEqualTo: "Radio Group")
+        assertThatFormattedElement(.valueIndicator, isEqualTo: "Value Indicator")
+        assertThatFormattedElement(.ratingIndicator, isEqualTo: "Rating Indicator")
+        assertThatFormattedElement(.pageIndicator, isEqualTo: "Page Indicator")
+        assertThatFormattedElement(.progressIndicator, isEqualTo: "Progress Indicator")
+        assertThatFormattedElement(.relevanceIndicator, isEqualTo: "Relevance Indicator")
+        assertThatFormattedElement(.disclosureTriangle, isEqualTo: "Disclosure Triangle")
+        assertThatFormattedElement(.ruler, isEqualTo: "Ruler")
+        assertThatFormattedElement(.rulerMarker, isEqualTo: "Ruler Marker")
+        assertThatFormattedElement(.statusItem, isEqualTo: "Status Item")
+        assertThatFormattedElement(.stepper, isEqualTo: "Stepper")
+        assertThatFormattedElement(.tab, isEqualTo: "Tab")
+        assertThatFormattedElement(.slider, isEqualTo: "Slider")
+        assertThatFormattedElement(.searchField, isEqualTo: "Search Field")
+        assertThatFormattedElement(.staticText, isEqualTo: "Static Text")
+        assertThatFormattedElement(.textField, isEqualTo: "Text Field")
+        assertThatFormattedElement(.secureTextField, isEqualTo: "Secure Text Field")
+        assertThatFormattedElement(.splitter, isEqualTo: "Splitter")
+        assertThatFormattedElement(.splitGroup, isEqualTo: "Split Group")
+        assertThatFormattedElement(.valueIndicator, isEqualTo: "Value Indicator")
+        assertThatFormattedElement(.webView, isEqualTo: "Web View")
+        assertThatFormattedElement(.window, isEqualTo: "Window")
+        assertThatFormattedElement(.navigationBar, isEqualTo: "Navigation Bar")
+        assertThatFormattedElement(.table, isEqualTo: "Table")
+        assertThatFormattedElement(.tableRow, isEqualTo: "Table Row")
+        assertThatFormattedElement(.tableColumn, isEqualTo: "Table Column")
+        assertThatFormattedElement(.tabBar, isEqualTo: "Tab Bar")
+        assertThatFormattedElement(.tabGroup, isEqualTo: "Tab Group")
+        assertThatFormattedElement(.toolbar, isEqualTo: "Toolbar")
+        assertThatFormattedElement(.toolbarButton, isEqualTo: "Toolbar Button")
+        assertThatFormattedElement(.popUpButton, isEqualTo: "Pop Up Button")
+        assertThatFormattedElement(.popover, isEqualTo: "Popover")
+        assertThatFormattedElement(.picker, isEqualTo: "Picker")
+        assertThatFormattedElement(.pickerWheel, isEqualTo: "Picker Wheel")
+        assertThatFormattedElement(.switch, isEqualTo: "Switch")
+        assertThatFormattedElement(.toggle, isEqualTo: "Toggle")
+        assertThatFormattedElement(.outline, isEqualTo: "Outline")
+        assertThatFormattedElement(.outlineRow, isEqualTo: "Outline Row")
+        
+        assertThatFormattedElement(XCUIElement.ElementType(rawValue: .max)!, isEqualTo: "\(UInt.max)")
+    }
+    
+    private func assertThatFormattedElement(
+        _ elementType: XCUIElement.ElementType,
+        isEqualTo string: String,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        XCTAssertEqual(formatter.format(elementType), string, file: file, line: line)
+    }
+}

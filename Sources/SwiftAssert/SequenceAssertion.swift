@@ -101,7 +101,7 @@ public extension Assertion where Subject: Sequence, Subject.Element: Comparable 
             }
         } else {
             let failure = Failure(
-                text: "Expected max element of \(subject.map { $0 }) to be \(element)",
+                text: "Expected max element of [] to be \(element)",
                 location: SourceLocation(filePath: file, line: line)
             )
             FailureReporterHolder.sharedReporter.reportFailure(failure)
@@ -121,7 +121,7 @@ public extension Assertion where Subject: Sequence, Subject.Element: Comparable 
             }
         } else {
             let failure = Failure(
-                text: "Expected min element of \(subject.map { $0 }) to be \(element)",
+                text: "Expected min element of [] to be \(element)",
                 location: SourceLocation(filePath: file, line: line)
             )
             FailureReporterHolder.sharedReporter.reportFailure(failure)
